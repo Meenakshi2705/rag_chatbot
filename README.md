@@ -5,6 +5,10 @@
 IMDBot is a conversational Streamlit application that answers movie-related queries and suggests recommendations using semantic search, sentiment analysis, and metadata filtering. Just upload an IMDB-style CSV and start chatting!
 
 ---
+## 🖼️ Screenshots
+
+### 🔹 Home Page
+![image](https://github.com/user-attachments/assets/d7c30bb4-ed6c-477e-9ea9-b4f2b5e28fa6)
 
 ## 🚀 Features
 
