@@ -52,7 +52,7 @@ class IMDBot:
                     **metadata,
                     'sentiment': sentiment.polarity,
                     'sentiment_label': sentiment_label,
-                    'subjectivity': sentiment.subjectivity
+                    'sentiment_subjectivity': sentiment.subjectivity
                 }
             ))
         return processed_docs
@@ -194,20 +194,23 @@ st.write("Ask about a movie's rating, director, cast, genre, runtime, descriptio
 
 # File uploader for the CSV
 uploaded_file = st.file_uploader("Upload your IMDB CSV file", type=["csv"])
+data_path = "imdb.csv"
+
 if uploaded_file is not None:
     # Save the uploaded file to disk
-    with open("imdb.csv", "wb") as f:
+    with open(data_path, "wb") as f:
         f.write(uploaded_file.getbuffer())
-    
-    # Initialize the bot
-    bot = IMDBot("imdb.csv")
 
-    # Input query
-    query = st.text_input("Enter your question (e.g., 'What is the rating of Cars?' or 'Suggest a romance movie')")
-    
-    if query:
-        # Get and display the response
-        response = bot.search(query)
-        st.write(response)
-else:
-    st.write("Please upload the IMDB CSV file to start.")
+# Initialize the bot
+try:
+    bot = IMDBot(data_path)
+except FileNotFoundError:
+    st.write("Error: imdb.csv not found. Please upload the IMDB CSV file.")
+    st.stop()
+
+# Input query
+query = st.text_input("Enter your question (e.g., 'What is the rating of Cars?' or 'Suggest a romance movie')")
+if query:
+    # Get and display the response
+    response = bot.search(query)
+    st.write(response)
