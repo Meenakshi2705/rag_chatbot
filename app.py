@@ -1,7 +1,7 @@
 import streamlit as st
 import numpy as np
 import faiss
-from langchain.document_loaders import CSVLoader
+from langchain_community.document_loaders import CSVLoader
 from langchain.schema import Document
 from sentence_transformers import SentenceTransformer
 from textblob import TextBlob
